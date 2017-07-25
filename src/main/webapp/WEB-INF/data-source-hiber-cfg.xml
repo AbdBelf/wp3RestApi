@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="sqlServerDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=Lxp" />
+		<property name="username" value="sa" />
+		<property name="password" value="@dm!nLy0n" />
+	</bean>
+
+
+	<bean id="sqlServerSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="sqlServerDataSource" />
+
+		<property name="annotatedClasses">
+			<list>
+				<value>com.entity.Achat</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="logging.level.org.hibernate.SQL">debug</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="mySecondDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;databaseName=FitmanDB" />
+		<property name="username" value="sa" />
+		<property name="password" value="@dm!nLy0n" />
+	</bean>
+
+
+	<bean id="mySecondSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="mySecondDataSource" />
+
+		<property name="annotatedClasses">
+		<list>
+		<value>com.entity.QuoteArticle</value>
+		<value>com.entity.TempOrder</value>
+		</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="logging.level.org.hibernate.SQL">debug</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

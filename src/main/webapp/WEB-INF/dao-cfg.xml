@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
+
+
+
+	<bean id="achatDAO" class="com.dao.impl.AchatDAOImpl">
+		<property name="sqlServerSessionFactory" ref="sqlServerSessionFactory" />
+	</bean>
+
+	<bean id="quoteArticleDAO" class="com.dao.impl.QuoteArticleDAOImpl">
+		<property name="mySecondSessionFactory" ref="mySecondSessionFactory" />
+	</bean>
+
+	<bean id="tempOrderDAO" class="com.dao.impl.TempOrderDAOImpl">
+		<property name="mySecondSessionFactory" ref="mySecondSessionFactory" />
+	</bean>
+
+</beans>
